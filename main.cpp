@@ -7,7 +7,7 @@ int main()
     Point p(1.0, 1.0);
     print( "Point p(1.0, 1.0);\n");
 
-    print( "-----------------\n\n");
+    print( "-------------------------------\n\n");
     print( "Shape s(p);\n");
     Shape s(p); // s是一个Shape对象，尽管语义上并不成立
     print( "\ns.move(Point(2.0, 2.0));\n");
@@ -16,12 +16,12 @@ int main()
     //    s.resize();//错误！resize()没有在Shape接口中声明
     //    s.noMethod();//错误！该操作调用不能进行静态绑定，编译器会报"未定义的引用"错误
 
-    print( "-----------------\n\n");
+    print( "-------------------------------\n\n");
     print( "Circle c(p, 10.0);\n");
     Circle c(p, 10.0); // c是一个Circle对象，内嵌了一个Shape对象
     print( "\nc.move(Point(3.0, 3.0)); \n");
     c.move(Point(3.0, 3.0)); // OK，调用继承的父类操作，静态绑定到继承的父类方法
-    print( "\nc.resize(); \n");
+    print( "\nc.resize(2); \n");
     c.resize(2); // OK，调用子类的自身操作，静态绑定到自身的方法
 
     print( "-------------------------------\n\n");
@@ -32,12 +32,12 @@ int main()
     ps->move(p); // OK，通过指针调用Shape自身的操作，静态绑定到自身的方法
     //    ps->resize();     //错误！Shape的接口没有操作resize()
 
-    print( "-----------------\n\n");
+    print( "-------------------------------\n\n");
     print( "Circle *pc = &c;\n");
     Circle *pc = &c;
     print( "\npc->move(Point(5.0, 5.0)); \n");
     pc->move(Point(5.0, 5.0)); // OK，通过指针调用继承的父类Shape的操作，静态绑定到继承的父类方法
-    print( "\npc->resize(); \n");
+    print( "\npc->resize(2); \n");
     pc->resize(2); // OK,通过指针调用子类Circle的自身操作，静态绑定到自身的方法
 
     return 0;
