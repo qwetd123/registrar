@@ -28,8 +28,11 @@ public:
     virtual ~Shape();
 
     void move(Point p);                   //普通函数声明，可被继承
-    virtual void resize(double ratio) = 0;//泛化子类的相似操作为基类抽象操作，
+    virtual void resize(double ratio) = 0;//泛化子类的"相似操作"为基类"抽象操作"，
                                           //作为子类相似操作的共同接口，可被继承
+
+    virtual void display();               //泛化子类的"共似操作"作为基类"共似接口操作"
+                                          //作为子类"共似操作"的共同接口，可被继承
 private:
     Point m_origin;                       //属性描述，可被继承
 };
@@ -49,11 +52,17 @@ Shape::Shape(double x, double y)
 {}
 
 Shape::~Shape()
-{}
+{    print("cleaning in ~Shape()...\n");
+}
 
 void Shape::move(Point p)//泛化的方法，被子类继承
 {
     print("    moving to a new Point:{} "
           "using Shape::move().\n",p.toString());
     m_origin = p;
+}
+
+void Shape::display()
+{
+    print("origin = {}", m_origin.toString());
 }
